@@ -1,0 +1,21 @@
+{
+  "name": "<INPUT REPOSITORY NAME>",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "overrideChangelog": "gren changelog --override"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+<INPUT GIT URL> ex. https://github.com/woodonggyu/default-repo-template.git"
+  },
+  "author": "Donggyu Woo",
+  "license": "MIT",
+  "bugs": {
+    "url": "<INPUT REPOSITORY URL>/issues"
+  },
+  "homepage": "<INPUT REPOSITORY URL>#readme",
+  "dependencies": {
+    "github-release-notes": "^0.17.3"
+  }
+}
