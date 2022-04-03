@@ -1,20 +1,20 @@
 {
-  "name": "<INPUT REPOSITORY NAME>",
+  "name": "docker-misp",
   "version": "1.0.0",
-  "description": "",
+  "description": "A docker-compose for MISP",
   "scripts": {
     "overrideChangelog": "gren changelog --override"
   },
   "repository": {
     "type": "git",
-    "url": "git+<INPUT GIT URL> ex. https://github.com/woodonggyu/default-repo-template.git"
+    "url": "https://github.com/woodonggyu/docker-misp.git"
   },
   "author": "Donggyu Woo",
   "license": "MIT",
   "bugs": {
-    "url": "<INPUT REPOSITORY URL>/issues"
+    "url": "https://github.com/woodonggyu/docker-misp/issues"
   },
-  "homepage": "<INPUT REPOSITORY URL>#readme",
+  "homepage": "https://github.com/woodonggyu/docker-misp#readme",
   "dependencies": {
     "github-release-notes": "^0.17.3"
   }
