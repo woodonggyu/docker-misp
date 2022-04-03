@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+  misp:
+    container_name: misp
+    image: coolacid/misp-docker:core-latest
+    restart: always
+    ports:
+      - "443:443"
+    depends_on:
+      - redis
+      - db
+    environment:
+      - HOSTNAME=${HOSTNAME}
+# Enable higher security SSL in nginx
+#      - SECURESSL=true
+      - REDIS_FQDN=redis
+      - INIT=true
+      - CRON_USER_ID=1
+      - DISIPV6=true
+      - MYSQL_HOST=db
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    volumes:
+      - ./server-configs/:/var/www/MISP/app/Config/
+      - ./logs/:/var/www/MISP/app/tmp/logs/
+      - ./files/:/var/www/MISP/app/files
+      - ./ssl/:/etc/nginx/certs
+
+  db:
+    container_name: db
+    image: mariadb
+    restart: always
+    expose:
+      - "3306"
+    environment:
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    volumes:
+      - misp-data:/var/lib/mysql
+
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    expose:
+      - "6379"
+
+  misp-modules:
+    container_name: modules
+    image: coolacid/misp-docker:modules-latest
+    restart: always
+    environment:
+      - REDIS_BACKEND=redis
+    depends_on:
+      - redis
+      - db
+
+volumes:
+  misp-data:
