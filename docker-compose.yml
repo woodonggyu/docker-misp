@@ -27,6 +27,8 @@ services:
       - ./logs/:/var/www/MISP/app/tmp/logs/
       - ./files/:/var/www/MISP/app/files
       - ./ssl/:/etc/nginx/certs
+      - ./img/orgs:/var/www/MISP/app/webroot/img/orgs/
+      - ./img/custom:/var/www/MISP/app/webroot/img/custom/
 
   db:
     container_name: db
