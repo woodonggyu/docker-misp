@@ -29,6 +29,7 @@ services:
       - ./ssl/:/etc/nginx/certs
       - ./img/orgs:/var/www/MISP/app/webroot/img/orgs/
       - ./img/custom:/var/www/MISP/app/webroot/img/custom/
+      - ./config:/var/www/MISP/app/Config/
 
   db:
     container_name: db
